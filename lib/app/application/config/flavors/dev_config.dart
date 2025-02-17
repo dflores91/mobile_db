@@ -4,12 +4,15 @@ import 'package:mobile_coding_challenge/app/domain/flavors/flavors_config.dart';
 
 @dev
 @Injectable(as: FlavorConfig)
-class DevelopmentConfig implements FlavorConfig {
+class DeveloperConfig implements FlavorConfig {
   @override
   Future<void> initializeEnvironment() async {
-    // Add your development environment specific configurations here
   }
 
   @override
   String get baseUrl => dotenv.env['BASE_URL']!;
+  @override
+  String get token => dotenv.env['TOKEN_MOVIE_DB']!;
+  @override
+  String get urlImage => dotenv.env['URL_IMAGE']!;
 }

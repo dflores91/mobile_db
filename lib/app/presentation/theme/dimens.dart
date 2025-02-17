@@ -1,5 +1,7 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+double size2 = 2.sp;
+double size5 = 5.sp;
 double size8 = 8.sp;
 double size10 = 10.sp;
 double size12 = 12.sp;

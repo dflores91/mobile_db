@@ -1,9 +1,9 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile_coding_challenge/app/presentatios/theme/colors.dart'
+import 'package:mobile_coding_challenge/app/presentation/theme/colors.dart'
     as colors;
-import 'package:mobile_coding_challenge/app/presentatios/theme/dimens.dart';
+import 'package:mobile_coding_challenge/app/presentation/theme/dimens.dart';
 
 class TypographyStyle {
   static final TextStyle questrialMedium8 = GoogleFonts.questrial(
@@ -88,48 +88,6 @@ class TypographyStyle {
     letterSpacing: -0.32.sp,
     fontWeight: FontWeight.w600,
     height: 1.3.h,
-  );
-
-  static final TextStyle kanitBold20 = GoogleFonts.kanit(
-    fontSize: size20,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w600,
-    height: 1.45.h,
-  );
-
-  static final TextStyle kanitExtraBold22 = GoogleFonts.kanit(
-    fontSize: size22,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w700,
-    height: 1.45.h,
-  );
-
-  static final TextStyle kanitExtraBold18 = GoogleFonts.kanit(
-    fontSize: size18,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w700,
-    height: 1.45.h,
-  );
-
-  static final TextStyle kanitExtraBold14 = GoogleFonts.kanit(
-    fontSize: size14,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w700,
-    height: 1.45.h,
-  );
-
-  static final TextStyle kanitExtraBold16 = GoogleFonts.kanit(
-    fontSize: size16,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w700,
-    height: 1.45.h,
-  );
-
-  static final TextStyle kanitExtraBold40 = GoogleFonts.kanit(
-    fontSize: size40,
-    letterSpacing: -0.40.sp,
-    fontWeight: FontWeight.w700,
-    height: 1.45.h,
   );
 }
 

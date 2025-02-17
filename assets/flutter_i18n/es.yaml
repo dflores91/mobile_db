@@ -1,0 +1,20 @@
+home:
+  tabbar:
+    home: "Inicio"
+    search: "Buscar"
+    wishlist: "Mi lista"
+  start:
+    details: "Detalles"
+    discover: "Descubre nuevas películas"
+    now_play: "Ya disponibles"
+    popular: "Más populares"
+    top_rated: "Mejor calificadas"
+    upcoming: "Proximamente"
+  details:
+    release_date: "Fecha de lanzamiento: {date}"
+    no_info: "No tenemos ninguna información sobre esta película, lo sentimos."
+  search:
+    search_hint: "Buscar película"
+    empty_state: "Escribe algo para empezar buscar"
+  wishlist:
+    empty_state: "¡No hay películas en tu lista, agrega algunas!"

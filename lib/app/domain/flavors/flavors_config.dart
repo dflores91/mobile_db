@@ -1,4 +1,6 @@
 abstract class FlavorConfig {
-  String get baseUrl;
   Future<void> initializeEnvironment();
+  String get baseUrl;
+  String get token;
+  String get urlImage;
 }

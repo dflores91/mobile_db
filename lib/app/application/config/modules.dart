@@ -1,5 +1,3 @@
-// ignore_for_file: depend_on_referenced_packages
-
 import 'package:injectable/injectable.dart';
 import 'package:mobile_coding_challenge/app/application/config/injectable.dart';
 import 'package:mobile_coding_challenge/app/domain/api_client/api_client.dart';
@@ -9,12 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 @module
 abstract class Modules {
-  ApiClient get client {
-    return ApiClient(
+  ApiClient get client => ApiClient(
       baseUrl: getIt.get<FlavorConfig>().baseUrl,
       interceptors: [PrettyDioLogger()],
-    );
-  }
+  );
 
   @preResolve
   Future<SharedPreferences> get prefs => SharedPreferences.getInstance();
