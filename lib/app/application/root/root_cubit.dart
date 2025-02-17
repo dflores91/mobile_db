@@ -1,10 +1,10 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile_coding_challenge/app/application/config/injectable.dart';
+import 'package:mobile_coding_challenge/app/domain/api_client/entities/api_error_response.dart';
 import 'package:mobile_coding_challenge/app/domain/app_storage/app_storage.dart';
 import 'package:mobile_coding_challenge/app/domain/flavors/flavors_config.dart';
 import 'package:mobile_coding_challenge/app/domain/movies/entities/genres_response.dart';
@@ -40,8 +40,13 @@ class RootCubit extends Cubit<RootState> {
           );
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -54,8 +59,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(nowPlayMovies: movies.results));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -68,8 +78,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(popularMovies: movies.results));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -82,8 +97,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(topRatedMovies: movies.results));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -96,8 +116,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(upcomingMovies: movies.results));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -110,8 +135,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(genres: generes.genres));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -127,8 +157,13 @@ class RootCubit extends Cubit<RootState> {
           emit(state.copyWith(searchMovies: movies.results));
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -149,8 +184,13 @@ class RootCubit extends Cubit<RootState> {
           );
         }
       },
-      (String r) {
-        log('error: $r');
+      (ApiErrorResponse apiError) {
+        emit(
+          state.copyWith(
+            errorMessage: apiError.message,
+            showErrorMessage: true,
+          ),
+        );
       },
     );
   }
@@ -195,5 +235,18 @@ class RootCubit extends Cubit<RootState> {
 
   bool isFavoriteMovie(MovieDetail movie) {
     return state.wishlist.contains(movie);
+  }
+
+  void clearErrorMessage() {
+    emit(state.copyWith(errorMessage: '', showErrorMessage: false));
+  }
+
+  void retry() {
+    getGenres();
+    getMovies();
+    getPlayNowMovies();
+    getPopularMovies();
+    getTopRatedMovies();
+    getUpcomingMovies();
   }
 }

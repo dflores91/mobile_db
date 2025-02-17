@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile_coding_challenge/app/domain/movies/entities/movies_response.dart';
 import 'package:mobile_coding_challenge/app/presentation/theme/dimens.dart';
 import 'package:mobile_coding_challenge/app/presentation/theme/typography.dart';
+import 'package:mobile_coding_challenge/app/presentation/widgets/app_shimmer.dart';
 import 'package:mobile_coding_challenge/home/presentation/details/details_screen.dart';
 
 class AppImagesList extends StatelessWidget {
@@ -34,38 +35,59 @@ class AppImagesList extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: size20),
           child: SizedBox(
             height: 150,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              itemCount: movies.length,
-              itemBuilder: (context, index) {
-                final movie = movies[index];
-                return Stack(
-                  children: [
-                    GestureDetector(
-                      onTap:
-                          () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DetailsScreen(movie: movie),
+            child:
+                movies.isEmpty
+                    ? ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 6,
+                      itemBuilder: (context, index) {
+                        return AppShimmer(
+                          child: Container(
+                            width: 100,
+                            height: 150,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[300],
+                              borderRadius: BorderRadius.circular(size12),
                             ),
                           ),
-                      child: Container(
-                        width: 100,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(size12),
-                          child: Image.network(
-                            urlImage + (movie!.posterPath ?? ''),
-                            width: 100,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
+                        );
+                      },
+                      separatorBuilder: (context, index) => SizedBox(width: 10),
+                    )
+                    : ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: movies.length,
+                      itemBuilder: (context, index) {
+                        final movie = movies[index];
+                        return Stack(
+                          children: [
+                            GestureDetector(
+                              onTap:
+                                  () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder:
+                                          (context) =>
+                                              DetailsScreen(movie: movie),
+                                    ),
+                                  ),
+                              child: Container(
+                                width: 100,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(size12),
+                                  child: Image.network(
+                                    urlImage + (movie!.posterPath ?? ''),
+                                    width: 100,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                      separatorBuilder: (context, index) => SizedBox(width: 10),
                     ),
-                  ],
-                );
-              },
-              separatorBuilder: (context, index) => SizedBox(width: 10),
-            ),
           ),
         ),
       ],

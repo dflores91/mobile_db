@@ -4,6 +4,7 @@ import 'package:mobile_coding_challenge/app/application/root/root_cubit.dart';
 import 'package:mobile_coding_challenge/app/presentation/theme/dimens.dart';
 import 'package:mobile_coding_challenge/app/presentation/utils/translation_extention.dart';
 import 'package:mobile_coding_challenge/app/presentation/widgets/app_images_list.dart';
+import 'package:mobile_coding_challenge/app/presentation/widgets/app_shimmer.dart';
 import 'package:mobile_coding_challenge/home/presentation/start/widget/images_carousel.dart';
 
 class StartScreen extends StatefulWidget {
@@ -24,9 +25,12 @@ class _StartScreenState extends State<StartScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 state.carouselImages.isEmpty
-                    ? SizedBox(
-                      height: size54,
-                      child: Center(child: CircularProgressIndicator()),
+                    ? AppShimmer(
+                      child: Container(
+                        width: double.infinity,
+                        height: 500,
+                        decoration: BoxDecoration(color: Colors.grey[300]),
+                      ),
                     )
                     : ImageCarousel(carouselImages: state.carouselImages),
                 SizedBox(height: size20),

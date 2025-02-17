@@ -6,19 +6,21 @@ class AppButton extends StatelessWidget {
     required this.color,
     required this.child,
     required this.onPressed,
+    this.minumumSize = const Size(150, 54),
     super.key,
   });
 
   final Color color;
   final Widget child;
   final void Function() onPressed;
+  final Size minumumSize;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color,
-        minimumSize: Size(150, size54),
+        minimumSize: minumumSize,
         padding: EdgeInsets.symmetric(horizontal: size16),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),

@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:mobile_coding_challenge/app/domain/api_client/api_client.dart';
 import 'package:mobile_coding_challenge/app/domain/api_client/api_request.dart';
+import 'package:mobile_coding_challenge/app/domain/api_client/entities/api_error_response.dart';
 import 'package:mobile_coding_challenge/app/domain/movies/entities/genres_response.dart';
 import 'package:mobile_coding_challenge/app/domain/movies/entities/movies_response.dart';
 import 'package:mobile_coding_challenge/app/infrastructure/movies/movies_facade.dart';
@@ -14,7 +16,7 @@ class MoviesRepository implements MoviesFacade {
   final ApiClient _apiClient;
 
   @override
-  Future<Either<MoviesResponse?, String>> getMovies() async {
+  Future<Either<MoviesResponse?, ApiErrorResponse>> getMovies() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get(
@@ -26,15 +28,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<GenresResponse?, String>> getGenres() async {
+  Future<Either<GenresResponse?, ApiErrorResponse>> getGenres() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get('genre/movie/list?language=${localeUser()}'),
@@ -44,15 +48,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<MoviesResponse?, String>> nowPlay() async {
+  Future<Either<MoviesResponse?, ApiErrorResponse>> nowPlay() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get('movie/now_playing?language=${localeUser()}-US&page=1'),
@@ -62,15 +68,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<MoviesResponse?, String>> popular() async {
+  Future<Either<MoviesResponse?, ApiErrorResponse>> popular() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get('movie/popular?language=${localeUser()}-US&page=1'),
@@ -80,15 +88,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<MoviesResponse?, String>> topRated() async {
+  Future<Either<MoviesResponse?, ApiErrorResponse>> topRated() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get('movie/top_rated?language=${localeUser()}-US&page=1'),
@@ -98,15 +108,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<MoviesResponse?, String>> upcoming() async {
+  Future<Either<MoviesResponse?, ApiErrorResponse>> upcoming() async {
     try {
       final response = await _apiClient.request(
         ApiRequest.get('movie/upcoming?language=${localeUser()}-US&page=1'),
@@ -116,15 +128,17 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 
   @override
-  Future<Either<MoviesResponse?, String>> search(
+  Future<Either<MoviesResponse?, ApiErrorResponse>> search(
     String query, {
     int page = 1,
   }) async {
@@ -139,10 +153,12 @@ class MoviesRepository implements MoviesFacade {
       if (response != null) {
         return Left(response);
       } else {
-        return Right('Failed to get movies');
+        return Right(
+          ApiErrorResponse(status: 500, message: 'Failed to get movies'),
+        );
       }
-    } catch (e) {
-      return Right('Failed to get movies: ${e.toString()}');
+    } on DioException catch (e) {
+      return handleDioException(e);
     }
   }
 }

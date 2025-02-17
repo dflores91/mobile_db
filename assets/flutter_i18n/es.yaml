@@ -3,6 +3,8 @@ home:
     home: "Inicio"
     search: "Buscar"
     wishlist: "Mi lista"
+    retry: "Reintentar"
+    logout: "Salir"
   start:
     details: "Detalles"
     discover: "Descubre nuevas películas"
@@ -18,3 +20,10 @@ home:
     empty_state: "Escribe algo para empezar buscar"
   wishlist:
     empty_state: "¡No hay películas en tu lista, agrega algunas!"
+
+errors:
+  timeout: "La solicitud ha excedido el tiempo de espera. Por favor, inténtelo de nuevo más tarde."
+  connection_error: "Error de conexión. Por favor, verifique su conexión a internet."
+  session_expired_title: "Sesión expirada"
+  session_expired_message: "La sesión ha expirado, por favor inicie sesión nuevamente"
+  title: "¡Ups! Tenemos un problema"

@@ -12,6 +12,8 @@ class RootState extends Equatable {
     this.searchMovies = const [],
     this.pageToSearch = 1,
     this.wishlist = const [],
+    this.showErrorMessage = false,
+    this.errorMessage = '',
   });
 
   final List<MovieDetail?> movies;
@@ -24,6 +26,8 @@ class RootState extends Equatable {
   final List<MovieDetail?> searchMovies;
   final int pageToSearch;
   final List<MovieDetail> wishlist;
+  final bool showErrorMessage;
+  final String errorMessage;
 
   RootState copyWith({
     List<MovieDetail>? movies,
@@ -36,6 +40,8 @@ class RootState extends Equatable {
     List<MovieDetail?>? searchMovies,
     int? pageToSearch,
     List<MovieDetail>? wishlist,
+    bool? showErrorMessage,
+    String? errorMessage,
   }) => RootState(
     movies: movies ?? this.movies,
     nowPlayMovies: nowPlayMovies ?? this.nowPlayMovies,
@@ -47,6 +53,8 @@ class RootState extends Equatable {
     searchMovies: searchMovies ?? this.searchMovies,
     pageToSearch: pageToSearch ?? this.pageToSearch,
     wishlist: wishlist ?? this.wishlist,
+    showErrorMessage: showErrorMessage ?? this.showErrorMessage,
+    errorMessage: errorMessage ?? this.errorMessage,
   );
 
   @override
@@ -61,5 +69,7 @@ class RootState extends Equatable {
     searchMovies,
     pageToSearch,
     wishlist,
+    showErrorMessage,
+    errorMessage,
   ];
 }

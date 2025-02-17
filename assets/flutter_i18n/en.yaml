@@ -3,6 +3,8 @@ home:
     home: "Home"
     search: "Search"
     wishlist: "Wishlist"
+    retry: "Retry"
+    logout: "Go out"
   start:
     details: "Details"
     discover: "Discover new movies"
@@ -18,3 +20,10 @@ home:
     empty_state: "Type something to start searching"
   wishlist:
     empty_state: "No movies in wishlist, add some!"
+
+errors:
+  timeout: "Request timed out, please try again later."
+  connection_error: "Connection error, check internet."
+  session_expired_title: "Session expired"
+  session_expired_message: "The session has expired, please log in again"
+  title: "Oops! We have a problem"
