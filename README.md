@@ -63,7 +63,7 @@ La aplicación utiliza las siguientes dependencias principales:
 
 - ¿Qué habrías añadido si tuvieras más tiempo?
 
-    Si tuviera más tiempo, añadiría el dark mode, un login y una clase para gestion de errores con ayuda de la implementación de dio.
+    Si tuviera más tiempo, añadiría el dark mode y un login.
 
 - ¿Cuál fue la parte más difícil de la aplicación?
 
